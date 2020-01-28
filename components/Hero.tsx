@@ -6,7 +6,9 @@ const useStyles = makeStyles(theme =>
     container: {
       height: '450px',
       marginBottom: '32px',
+      marginTop: '-64px',
       position: 'relative',
+      zIndex: -1,
     },
     shared: {
       backgroundPosition: 'center 60%',
@@ -20,11 +22,9 @@ const useStyles = makeStyles(theme =>
     },
     hero: (props: { image: string; lqip: string }) => ({
       backgroundImage: `url(${props.image})`,
-      zIndex: -1,
     }),
     heroLQIP: (props: { image: string; lqip: string }) => ({
       backgroundImage: `url(${props.lqip})`,
-      zIndex: -1,
     }),
   }),
 );

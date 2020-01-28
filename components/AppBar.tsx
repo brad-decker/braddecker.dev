@@ -6,7 +6,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useScrollTrigger } from '@material-ui/core';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import StackoverFlowIcon from '@material-ui/icons/';
+import { useScrollTrigger, Icon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       transition: 'all 0.25s ease-out',
       willChange: 'background-color',
-      marginBottom: `-64px`,
+      // marginBottom: `-64px`,
+      zIndex: 1,
     },
     transparent: {
       backgroundColor: 'rgba(0,0,0,0.15)',
@@ -50,6 +54,32 @@ export const AppBar = () => {
         <Typography variant="h6" className={classes.title}>
           Brad Decker
         </Typography>
+        <div>
+          <IconButton
+            aria-label="view site source"
+            aria-controls="menu-appbar"
+            href="https://github.com/brad-decker/braddecker.dev"
+            target="_blank"
+          >
+            <GitHubIcon />
+          </IconButton>
+          <IconButton
+            aria-label="LinkedIn"
+            aria-controls="menu-appbar"
+            href="https://www.linkedin.com/in/bhdecker/"
+            target="_blank"
+          >
+            <LinkedInIcon />
+          </IconButton>
+          <IconButton
+            aria-label="Stackoverflow"
+            aria-controls="menu-appbar"
+            href="https://stackoverflow.com/users/2642092/brad-decker"
+            target="_blank"
+          >
+            <Icon className="fab fa-stack-overflow" />
+          </IconButton>
+        </div>
       </Toolbar>
     </MUIAppBar>
   );
