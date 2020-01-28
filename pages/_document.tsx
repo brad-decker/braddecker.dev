@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-          <script src="https://kit.fontawesome.com/1e6868cba5.js" crossorigin="anonymous"></script>
+          <script src="https://kit.fontawesome.com/1e6868cba5.js" crossOrigin="anonymous"></script>
         </Head>
         <body>
           <Main />
