@@ -12,10 +12,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Card,
-  CardHeader,
-  Avatar,
-  CardContent,
+  Typography,
 } from '@material-ui/core';
 import DoneOutline from '@material-ui/icons/DoneOutline';
 import { Paragraph } from '../components/Paragraph';
@@ -23,19 +20,25 @@ import { SectionHeader } from '../components/SectionHeader';
 import { achievements } from '../data/achivements';
 import { CareerCard } from '../components/CareerCard';
 import { jobHistory } from '../data/job-history';
-import { useLQIP } from '../hooks/useLQIP';
 import { Hero } from '../components/Hero';
 import { recommendations } from '../data/recommendations';
 import { RecommendationCard } from '../components/RecommendationCard';
+import { languages, frameworks, softSkills } from '../data/skills';
+import { SkillChip } from '../components/SkillChip';
 
 const useStyles = makeStyles(theme =>
   createStyles({
-    portfolio: {},
     section: {
       marginBottom: '32px',
     },
-    cardMedia: {
-      height: 200,
+    skillContainer: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
+      marginBottom: theme.spacing(2),
+      '& > *': {
+        margin: theme.spacing(0.5),
+      },
     },
   }),
 );
@@ -99,8 +102,35 @@ export default () => {
             Furthermore, writing code is why I am in this career path, and I cannot leave that behind.
           </Paragraph>
         </section>
+        <section id="skills" className={classes.section}>
+          <SectionHeader title="Tools of the Trade" overline="Proficiencies" />
+          <Typography gutterBottom variant="subtitle2">
+            Languages and Syntaxes
+          </Typography>
+          <div className={classes.skillContainer}>
+            {languages.map(language => (
+              <SkillChip {...language} />
+            ))}
+          </div>
+          <Typography gutterBottom variant="subtitle2">
+            Libraries and Frameworks
+          </Typography>
+          <div className={classes.skillContainer}>
+            {frameworks.map(framework => (
+              <SkillChip {...framework} />
+            ))}
+          </div>
+          <Typography gutterBottom variant="subtitle2">
+            Management and Soft Skills
+          </Typography>
+          <div className={classes.skillContainer}>
+            {softSkills.map(skill => (
+              <SkillChip {...skill} />
+            ))}
+          </div>
+        </section>
         <section id="career" className={classes.section}>
-          <SectionHeader title="Career History" overline="Previous Employers" />
+          <SectionHeader title="Experience" overline="Previous Employers" />
           <Grid container spacing={2}>
             {jobHistory.map(job => (
               <CareerCard key={job.company} {...job} />
@@ -134,7 +164,7 @@ export default () => {
         </section>
         <section id="portfolio">
           <SectionHeader title="Case Studies and Demos" overline="Past Projects" />
-          <GridList className={classes.portfolio} cellHeight={280}>
+          <GridList cellHeight={280}>
             {PORTFOLIO_DATA.map(item => (
               <GridListTile key={item.title}>
                 <img src={item.image} alt={item.title} />
