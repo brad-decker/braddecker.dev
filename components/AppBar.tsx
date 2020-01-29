@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { useScrollTrigger, Icon, Avatar, Slide } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,12 +35,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const titles = ['Director of Software Engineering', 'Lead Engineer', 'Web Developer', 'Architect'];
-
 export const AppBar = () => {
   const classes = useStyles();
-  const titleIncrement = useRef(0);
-  const [title, setTitle] = useState(titles[titleIncrement.current]);
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -52,19 +47,6 @@ export const AppBar = () => {
     [classes.root]: true,
     [classes.transparent]: !trigger,
   });
-
-  useEffect(() => {
-    function changeTitle() {
-      if (titleIncrement.current < titles.length - 1) {
-        titleIncrement.current++;
-      } else {
-        titleIncrement.current = 0;
-      }
-      setTitle(titles[titleIncrement.current]);
-    }
-    const intervalId = setInterval(changeTitle, 800);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <MUIAppBar position={trigger ? 'sticky' : 'static'} className={appBarClass} elevation={trigger ? 4 : 0}>
@@ -82,7 +64,7 @@ export const AppBar = () => {
           />
           <Slide in={trigger} direction="down">
             <Typography variant="h6" component="p">
-              Brad Decker, {title}
+              Brad Decker
             </Typography>
           </Slide>
         </div>

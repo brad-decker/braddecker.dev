@@ -1,6 +1,7 @@
 import { makeStyles, createStyles, Typography, Container, Slide } from '@material-ui/core';
 import { useLQIP } from '../hooks/useLQIP';
 import { useState, useEffect } from 'react';
+import { useTitleLoop } from '../hooks/useTitleLoop';
 
 interface HeroProps {
   lqip: string;
@@ -46,6 +47,7 @@ export const Hero = ({ image, lqip }: HeroProps) => {
   const classes = useStyles({ image, lqip });
   const [_, loaded] = useLQIP({ placeholder: lqip, full: image });
   const [slideIn, setSlideIn] = useState(false);
+  const title = useTitleLoop(slideIn, 2000);
   useEffect(() => {
     setTimeout(() => setSlideIn(true), 1500);
   }, []);
@@ -57,7 +59,7 @@ export const Hero = ({ image, lqip }: HeroProps) => {
         </Typography>
         <Slide in={slideIn} direction="right" timeout={2000} mountOnEnter unmountOnExit>
           <Typography variant="h4" component="h2">
-            I am a software engineer, architect and technical lead.
+            I am a {title}.
           </Typography>
         </Slide>
       </Container>
