@@ -8,15 +8,12 @@ import {
   CardActions,
   makeStyles,
   createStyles,
-  IconButton,
   Typography,
   Link,
   Button,
 } from '@material-ui/core';
 import { Paragraph } from './Paragraph';
 import { useState } from 'react';
-import clsx from 'clsx';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -26,7 +23,25 @@ const useStyles = makeStyles(theme =>
   }),
 );
 
-export const RecommendationCard = ({ text, date, from, title, image, relationship, linkedin }) => {
+interface RecommendationCardProps {
+  text: string;
+  date: string;
+  from: string;
+  title: string;
+  image: string;
+  relationship: string;
+  linkedin: string;
+}
+
+export const RecommendationCard = ({
+  text,
+  date,
+  from,
+  title,
+  image,
+  relationship,
+  linkedin,
+}: RecommendationCardProps) => {
   const classes = useStyles();
   const [isExpanded, setExpanded] = useState(false);
   const paragraphs = text.slice().split(/\n/);

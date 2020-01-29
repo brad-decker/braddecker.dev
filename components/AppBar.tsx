@@ -8,7 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import StackoverFlowIcon from '@material-ui/icons/';
 import { useScrollTrigger, Icon } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -8,7 +8,12 @@ const useStyles = makeStyles(theme =>
   }),
 );
 
-export const SectionHeader = ({ title, overline }) => {
+interface SectionHeaderProps {
+  title: string;
+  overline: string;
+}
+
+export const SectionHeader = ({ title, overline }: SectionHeaderProps) => {
   const classes = useStyles();
   return (
     <>

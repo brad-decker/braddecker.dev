@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
-export function useLQIP({ placeholder, full }): [string, boolean] {
+interface UseLQIPArgs {
+  placeholder: string;
+  full: string;
+}
+
+export function useLQIP({ placeholder, full }: UseLQIPArgs): [string, boolean] {
   const [loaded, setLoaded] = useState(false);
   const img = useRef<null | HTMLImageElement>(null);
   useEffect(() => {

@@ -1,6 +1,11 @@
 import { makeStyles, createStyles } from '@material-ui/core';
 import { useLQIP } from '../hooks/useLQIP';
 
+interface HeroProps {
+  lqip: string;
+  image: string;
+}
+
 const useStyles = makeStyles(theme =>
   createStyles({
     container: {
@@ -20,16 +25,16 @@ const useStyles = makeStyles(theme =>
       right: 0,
       bottom: 0,
     },
-    hero: (props: { image: string; lqip: string }) => ({
+    hero: (props: HeroProps) => ({
       backgroundImage: `url(${props.image})`,
     }),
-    heroLQIP: (props: { image: string; lqip: string }) => ({
+    heroLQIP: (props: HeroProps) => ({
       backgroundImage: `url(${props.lqip})`,
     }),
   }),
 );
 
-export const Hero = ({ image, lqip }) => {
+export const Hero = ({ image, lqip }: HeroProps) => {
   const classes = useStyles({ image, lqip });
   const [_, loaded] = useLQIP({ placeholder: lqip, full: image });
   return (

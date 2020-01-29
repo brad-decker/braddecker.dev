@@ -8,7 +8,6 @@ import {
   makeStyles,
   createStyles,
   CardMedia,
-  CardHeader,
 } from '@material-ui/core';
 import { Paragraph } from './Paragraph';
 
