@@ -25,6 +25,7 @@ import { recommendations } from '../data/recommendations';
 import { RecommendationCard } from '../components/RecommendationCard';
 import { languages, frameworks, softSkills } from '../data/skills';
 import { SkillChip } from '../components/SkillChip';
+import { Section } from '../components/Section';
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -67,8 +68,7 @@ export default () => {
     <Layout>
       <Hero image="images/home-background.jpg" lqip="images/blurry.jpg" />
       <Container>
-        <section id="introduction" className={classes.section}>
-          <SectionHeader title="Make an Impact" overline="Mission Statement" />
+        <Section title="Make an Impact" overline="Mission Statement" id="introduction">
           <Paragraph>
             Greetings, My name is Brad Decker, and I am a fullstack software engineer and experienced technical leader.
             I have experience implementing system architecture, user experiences, intuitive user features and leading
@@ -101,9 +101,8 @@ export default () => {
             sometimes "good" guidance on their pull requests. I can only do that if I understand the codebase.
             Furthermore, writing code is why I am in this career path, and I cannot leave that behind.
           </Paragraph>
-        </section>
-        <section id="skills" className={classes.section}>
-          <SectionHeader title="Tools of the Trade" overline="Proficiencies" />
+        </Section>
+        <Section id="skills" title="Tools of the Trade" overline="Proficiencies">
           <Typography gutterBottom variant="subtitle2">
             Languages and Syntaxes
           </Typography>
@@ -128,17 +127,15 @@ export default () => {
               <SkillChip {...skill} />
             ))}
           </div>
-        </section>
-        <section id="career" className={classes.section}>
-          <SectionHeader title="Experience" overline="Previous Employers" />
+        </Section>
+        <Section id="career" title="Experience" overline="Previous Employers">
           <Grid container spacing={2}>
             {jobHistory.map(job => (
               <CareerCard key={job.company} {...job} />
             ))}
           </Grid>
-        </section>
-        <section id="achievements" className={classes.section}>
-          <SectionHeader title="My Proudest Moments" overline="Achievements" />
+        </Section>
+        <Section id="achievements" title="My Proudest Moments" overline="Achievements">
           <List>
             {achievements.map(achievement => (
               <ListItem key={achievement.primary}>
@@ -153,17 +150,15 @@ export default () => {
               </ListItem>
             ))}
           </List>
-        </section>
-        <section id="recommendations" className={classes.section}>
-          <SectionHeader title="What others say" overline="Recommendations" />
+        </Section>
+        <Section id="recommendations" title="What others say" overline="Recommendations">
           <Grid container spacing={2}>
             {recommendations.map(recommendation => (
               <RecommendationCard {...recommendation} />
             ))}
           </Grid>
-        </section>
-        <section id="portfolio">
-          <SectionHeader title="Case Studies and Demos" overline="Past Projects" />
+        </Section>
+        <Section id="portfolio" title="Case Studies and Demos" overline="Past Projects">
           <GridList cellHeight={280}>
             {PORTFOLIO_DATA.map(item => (
               <GridListTile key={item.title}>
@@ -172,7 +167,7 @@ export default () => {
               </GridListTile>
             ))}
           </GridList>
-        </section>
+        </Section>
       </Container>
     </Layout>
   );
