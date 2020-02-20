@@ -1,0 +1,41 @@
+  {
+    "name": "braddecker.dev",
+    "sources": [
+      {
+        "dir": "src",
+        "subdirs": true
+      }
+    ],
+    "bs-dependencies": [
+      "reason-react",
+      "bs-webapi",
+      "@jsiebern/bs-material-ui",
+      "re-classnames",
+      "bs-css"
+    ],
+    "reason": {
+      "react-jsx": 3
+    },
+    "package-specs": {
+      "module": "es6",
+      "in-source": true
+    },
+    "suffix": ".bs.js",
+    "bsc-flags": [
+      "-bs-super-errors"
+    ],
+    "ppx-flags": [
+      "./node_modules/@jsiebern/bs-material-ui-ppx/ppx6"
+    ],
+    "refmt": 3,
+    "gentypeconfig": {
+      "language": "typescript",
+      "shims": {
+        "ReasonReact": "ReactShim"
+      },
+      "debug": {
+        "all": false,
+        "basic": false
+      }
+    }
+  }

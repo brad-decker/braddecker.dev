@@ -2,3 +2,8 @@
 .next
 node_modules/
 yarn-error.log
+*.bs.js
+.bsb.lock
+.DS_Store
+.merlin
+lib/bs
