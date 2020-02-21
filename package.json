@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "bsb -clean-world -make-world && next build",
     "dev": "yarn next dev -p 8080",
     "dev:reason": "bsb -clean-world -make-world -w"
   },
