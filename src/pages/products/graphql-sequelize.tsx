@@ -1,7 +1,7 @@
-import { Layout } from '../../containers/Layout';
+import { Layout } from '../../containers/Layout.gen';
 import { Paper, Container, Card, makeStyles, createStyles, Typography, Link } from '@material-ui/core';
-import { Section } from '../../components/Section';
-import { Paragraph } from '../../components/Paragraph';
+import { Section } from '../../components/Section.gen';
+import { Paragraph } from '../../components/Paragraph.gen';
 
 const useStyles = makeStyles(theme =>
   createStyles({
