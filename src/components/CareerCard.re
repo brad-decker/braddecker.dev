@@ -1,99 +1,27 @@
-/*
-  -- Typescript version of component at time of refactor --
-  import {
-    Grid,
-    Typography,
-    Card,
-    CardContent,
-    CardActions,
-    Button,
-    makeStyles,
-    createStyles,
-    CardMedia,
-  } from '@material-ui/core';
-  import { Paragraph } from './Paragraph';
+type classes = {
+  root: string,
+  actions: string,
+  details: string,
+  cardMedia: string,
+};
 
-  const useStyles = makeStyles(theme =>
-    createStyles({
-      root: {
-        borderRadius: 20,
-        display: 'flex',
-      },
-      actions: {
-        justifyContent: 'flex-end',
-      },
-      details: {
-        display: 'flex',
-        flexDirection: 'column',
-      },
-      cardMedia: {
-        minWidth: 100,
-        maxWidth: 180,
-        backgroundColor: 'white',
-        backgroundSize: 'contain',
-      },
-    }),
+let useStyles =
+  Styles.(
+    createStyles(
+      Static({
+        root: make([borderRadius(px(20)), display(`flex)]),
+        actions: make([justifyContent(flexEnd)]),
+        details: make([display(`flex), flexDirection(column)]),
+        cardMedia:
+          make([
+            minWidth(px(100)),
+            maxWidth(px(180)),
+            backgroundColor(white),
+            backgroundSize(contain),
+          ]),
+      }),
+    )
   );
-
-  type CareerCardProps = {
-    image?: string;
-    title: string;
-    company: string;
-    start: string;
-    end: string;
-    description: string;
-    link?: string;
-  };
-
-  export const CareerCard = ({ image, title, company, start, end, description, link }: CareerCardProps) => {
-    const classes = useStyles();
-    return (
-      <Grid item xs={12} md={6}>
-        <Card className={classes.root}>
-          {image && <CardMedia image={image} title={company} className={classes.cardMedia} />}
-          <div className={classes.details}>
-            <CardContent>
-              <Typography variant="overline" color="secondary">
-                {company}, {start} to {end}
-              </Typography>
-              <Typography gutterBottom variant="h5" component="h3">
-                {title}
-              </Typography>
-              <Paragraph>{description}</Paragraph>
-            </CardContent>
-            <CardActions className={classes.actions}>
-              {link && (
-                <Button size="small" color="secondary" href={link} target="_blank">
-                  Visit Site
-                </Button>
-              )}
-              <Button size="small" variant="contained" color="primary">
-                Details
-              </Button>
-            </CardActions>
-          </div>
-        </Card>
-      </Grid>
-    );
-  };
-
- */
-[%mui.withStyles
-  "CareerCard"({
-    root: Styles.(make([borderRadius(px(20)), display(`flex)])),
-    actions: Styles.(make([justifyContent(flexEnd)])),
-    details: Styles.(make([display(`flex), flexDirection(column)])),
-    cardMedia:
-      Styles.(
-        make([
-          minWidth(px(100)),
-          maxWidth(px(180)),
-          backgroundColor(white),
-          backgroundSize(contain),
-        ])
-      ),
-  })
-];
 
 [@react.component]
 let make =
@@ -106,7 +34,7 @@ let make =
       ~description,
       ~link: option(string),
     ) => {
-  let classes = CareerCard.useStyles();
+  let classes = useStyles(.);
 
   let companyName = company->Data.Company.to_string;
 

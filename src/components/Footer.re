@@ -1,21 +1,25 @@
-[%mui.withStyles
-  "Footer"(theme =>
-    {
-      root:
-        Styles.(
-          make([
-            padding2(~v=theme->getSpacing(2), ~h=theme->getSpacing(3)),
-            marginTop(`auto),
-            backgroundColor(MaterialUi.Colors.Grey.c800->materialToHex),
-          ])
-        ),
-    }
-  )
-];
+type classes = {root: string};
+
+let useStyles =
+  Styles.(
+    createStyles(
+      WithTheme(
+        theme =>
+          {
+            root:
+              make([
+                padding2(~v=theme->getSpacing(2), ~h=theme->getSpacing(3)),
+                marginTop(`auto),
+                backgroundColor(MaterialUi.Colors.Grey.c800->materialToHex),
+              ]),
+          },
+      ),
+    )
+  );
 
 [@react.component]
 let make = () => {
-  let classes = Footer.useStyles();
+  let classes = useStyles(.);
   MaterialUi.(
     <footer className={classes.root}>
       <Container>

@@ -1,30 +1,37 @@
-[%mui.withStyles
-  "AppBarStyles"(theme =>
-    {
-      root:
-        Styles.(
+type classes = {
+  root: string,
+  transparent: string,
+  menuButton: string,
+  title: string,
+  avatar: string,
+};
+
+let useStyles =
+  Styles.(
+    makeStylesWithTheme(theme =>
+      {
+        root:
           make([
             flexGrow(1.),
             zIndex(1),
             unsafe("will-change", "background-color"),
             unsafe("transition", "all 0.35s ease-out"),
-          ])
-        ),
-      transparent: Styles.(make([backgroundColor(rgba(0, 0, 0, 0.15))])),
-      menuButton: Styles.(make([marginRight(theme->getSpacing(2))])),
-      title:
-        Styles.(make([flexGrow(1.), display(`flex), alignItems(`center)])),
-      avatar: Styles.(make([marginRight(theme->getSpacing(2))])),
-    }
-  )
-];
+          ]),
+        transparent: make([backgroundColor(rgba(0, 0, 0, 0.15))]),
+        menuButton: make([marginRight(theme->getSpacing(2))]),
+        title: make([flexGrow(1.), display(`flex), alignItems(`center)]),
+        avatar: make([marginRight(theme->getSpacing(2))]),
+      }
+    )
+  );
 
 [@react.component]
 let make = () => {
-  let classes = AppBarStyles.useStyles();
+  let classes = useStyles(.);
 
   let trigger =
     Hooks.useScrollTrigger(~disableHysteresis=true, ~threshold=50, ());
+  Js.Console.log(classes);
 
   let className =
     Cn.make([

@@ -1,8 +1,14 @@
 include Css;
 external convertJsonToStyles: Js.Json.t => ReactDOMRe.Style.t = "%identity";
+external convertJsonToString: Js.Json.t => string = "%identity";
+[@bs.module "@material-ui/core/styles"]
+external makeStyles: 'a => (. unit) => 'a = "makeStyles";
+[@bs.module "@material-ui/core/styles"]
+external makeStylesWithTheme: (MaterialUi_Theme.t => 'a) => (. unit) => 'a =
+  "makeStyles";
 
 let make = (styles: list(Css.rule)) =>
-  styles->Css.toJson->convertJsonToStyles;
+  styles->Css.toJson->convertJsonToString;
 
 let addPx = i => i->string_of_int ++ "px";
 
@@ -62,4 +68,24 @@ let getTextPalette = (~variation, ~theme) => {
   ->MaterialUi.Theme.Palette.textGet
   ->variationMethod
   ->materialToHex;
+};
+
+type styleType('a) =
+  | Static('a)
+  | WithTheme(MaterialUi_Theme.t => 'a);
+
+let createStyles = (styles: styleType('a)) => {
+  switch (styles) {
+  | Static(rules) => makeStyles(rules)
+  | WithTheme(rules) => makeStylesWithTheme(rules)
+  };
+};
+
+module WithStyle = {
+  [@react.component]
+  let make = (~children, ~styles) => {
+    let hook = createStyles(styles);
+    let classes = hook(.);
+    children(classes);
+  };
 };

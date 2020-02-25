@@ -1,29 +1,35 @@
-[%mui.withStyles
-  "Roles"(theme =>
-    {
-      header:
-        Styles.(
-          make([
-            backgroundColor(
-              getPalette(~mode=`dark, ~color=`primary, ~theme),
-            ),
-          ])
-        ),
-      avatar:
-        Styles.(
-          make([
-            backgroundColor(getTextPalette(~variation=`primary, ~theme)),
-          ])
-        ),
-      grid: Styles.(make([selector("& > *", [flexGrow(1.)])])),
-      card: Styles.(make([height(`percent(100.))])),
-    }
-  )
-];
+type classes = {
+  header: string,
+  avatar: string,
+  grid: string,
+  card: string,
+};
+let useStyles =
+  Styles.(
+    createStyles(
+      WithTheme(
+        theme =>
+          {
+            header:
+              make([
+                backgroundColor(
+                  getPalette(~mode=`dark, ~color=`primary, ~theme),
+                ),
+              ]),
+            avatar:
+              make([
+                backgroundColor(getTextPalette(~variation=`primary, ~theme)),
+              ]),
+            grid: make([selector("& > *", [flexGrow(1.)])]),
+            card: make([height(`percent(100.))]),
+          },
+      ),
+    )
+  );
 
 [@react.component]
 let make = () => {
-  let classes = Roles.useStyles();
+  let classes = useStyles(.);
   MaterialUi.(
     <Section id="roles">
       <Grid container=true spacing=V2 className={classes.grid}>

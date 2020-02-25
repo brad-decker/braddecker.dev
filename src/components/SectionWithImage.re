@@ -1,4 +1,6 @@
-[%mui.withStyles "SectionWithImage"({clear: Styles.(make([clear(both)]))})];
+type classes = {clear: string};
+let useStyles =
+  Styles.(createStyles(Static({clear: make([clear(both)])})));
 
 [@genType "SectionWithImage"]
 [@react.component]
@@ -14,7 +16,7 @@ let make =
       ~reverse=false,
       ~maxWidth=300,
     ) => {
-  let classes = SectionWithImage.useStyles();
+  let classes = useStyles(.);
   let theme = Hooks.useTheme();
   let boxShadow = theme->MaterialUi_Theme.Theme.shadowsGet[imgShadow];
   let imgStyle =

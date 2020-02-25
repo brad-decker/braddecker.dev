@@ -1,10 +1,10 @@
-[%mui.withStyles
-  "SectionHeader"({overline: Styles.(make([marginBottom(px(-5))]))})
-];
+type classes = {overline: string};
+let useStyles =
+  Styles.(createStyles(Static({overline: make([marginBottom(px(-5))])})));
 
 [@react.component]
 let make = (~onSecondary=false, ~title, ~overline) => {
-  let classes = SectionHeader.useStyles();
+  let classes = useStyles(.);
 
   MaterialUi.(
     <>

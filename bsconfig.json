@@ -24,9 +24,6 @@
     "bsc-flags": [
       "-bs-super-errors"
     ],
-    "ppx-flags": [
-      "./node_modules/@jsiebern/bs-material-ui-ppx/ppx6"
-    ],
     "refmt": 3,
     "gentypeconfig": {
       "language": "typescript",

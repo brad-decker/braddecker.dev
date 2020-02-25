@@ -1,13 +1,18 @@
-[%mui.withStyles
-  "Paragraph"(theme =>
-    {root: Styles.(make([marginBottom(theme->getSpacing(4))]))}
-  )
-];
+type classes = {root: string};
+
+let useStyles =
+  Styles.(
+    createStyles(
+      WithTheme(
+        theme => {root: make([marginBottom(theme->getSpacing(4))])},
+      ),
+    )
+  );
 
 [@genType "Paragraph"]
 [@react.component]
 let make = (~children) => {
-  let classes = Paragraph.useStyles();
+  let classes = useStyles(.);
   MaterialUi.(
     <Typography
       variant=`Body1 component={`String("p")} className={classes.root}>

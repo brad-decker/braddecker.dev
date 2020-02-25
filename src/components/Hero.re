@@ -1,34 +1,39 @@
-[%mui.withStyles
-  "Hero"({
-    container:
-      Styles.(
-        make([
-          height(vh(100.)),
-          marginBottom(px(32)),
-          marginTop(px(-64)),
-          position(relative),
-          zIndex(-1),
-          display(`flex),
-          alignItems(center),
-        ])
-      ),
-    shared:
-      Styles.(
-        make([
-          backgroundPosition(center),
-          backgroundSize(cover),
-          backgroundRepeat(noRepeat),
-          position(absolute),
-          opacity(0.5),
-          top(zero),
-          bottom(zero),
-          right(zero),
-          left(zero),
-        ])
-      ),
-    title: Styles.(make([height(px(120)), textAlign(center), zIndex(1)])),
-  })
-];
+type classes = {
+  container: string,
+  shared: string,
+  title: string,
+};
+
+let useStyles =
+  Styles.(
+    createStyles(
+      Static({
+        container:
+          make([
+            height(vh(100.)),
+            marginBottom(px(32)),
+            marginTop(px(-64)),
+            position(relative),
+            zIndex(-1),
+            display(`flex),
+            alignItems(center),
+          ]),
+        shared:
+          make([
+            backgroundPosition(center),
+            backgroundSize(cover),
+            backgroundRepeat(noRepeat),
+            position(absolute),
+            opacity(0.5),
+            top(zero),
+            bottom(zero),
+            right(zero),
+            left(zero),
+          ]),
+        title: make([height(px(120)), textAlign(center), zIndex(1)]),
+      }),
+    )
+  );
 
 type slideStatus = [ | `in_ | `out_];
 
@@ -39,7 +44,7 @@ let bool_of_slideStatus = slideStatus =>
   };
 [@react.component]
 let make = (~image, ~lqip) => {
-  let classes = Hero.useStyles();
+  let classes = useStyles(.);
   let imageResult = Hooks.useLQIP(~mode=`css, ~full=image, ~placeholder=lqip);
   let imageStyle =
     switch (imageResult) {

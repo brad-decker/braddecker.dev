@@ -1342,11 +1342,6 @@
     "@babel/runtime" "^7.7.2"
     core-js "^3.4.1"
 
-"@jsiebern/bs-material-ui-ppx@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@jsiebern/bs-material-ui-ppx/-/bs-material-ui-ppx-1.0.6.tgz#3f3ad342fc02776331439e3430be04d83dc4eb6e"
-  integrity sha512-sUWpzh2Xrjw6i1yd66CtkN2pKA6lCfTVkLGHZGwExagX9dklbq+sL50NMOFtcqhB69RJYO4JU8puxMMxJzrzMw==
-
 "@jsiebern/bs-material-ui@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@jsiebern/bs-material-ui/-/bs-material-ui-1.2.0.tgz#d36431073b3225828222daf8bfa566f30678e3bc"

@@ -1,9 +1,17 @@
-[%mui.withStyles
-  "RecommendationCard"({
-    root: Styles.(make([maxHeight(px(400))])),
-    expand: Styles.(make([marginLeft(auto)])),
-  })
-];
+type classes = {
+  root: string,
+  expand: string,
+};
+
+let useStyles =
+  Styles.(
+    createStyles(
+      Static({
+        root: make([maxHeight(px(400))]),
+        expand: make([marginLeft(auto)]),
+      }),
+    )
+  );
 
 let newline = [%bs.re "/\\n/g"];
 let space = [%bs.re "/\\s/g"];
@@ -11,7 +19,7 @@ let onefiftychars = [%bs.re "/^(.{150}[^\s]*).*/"];
 
 [@react.component]
 let make = (~text, ~date, ~from, ~title, ~image, ~relationship, ~linkedin) => {
-  let classes = RecommendationCard.useStyles();
+  let classes = useStyles(.);
   let paragraphs = text->Js.String2.splitByRe(newline);
   let firstParagraph =
     paragraphs[0]

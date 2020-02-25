@@ -1,38 +1,42 @@
-[%mui.withStyles
-  "HomePage"(theme =>
-    {
-      section: Styles.(make([marginBottom(px(32))])),
-      skillContainer:
-        Styles.(
-          make([
-            display(`flex),
-            justifyContent(flexStart),
-            flexWrap(wrap),
-            marginBottom(theme->getSpacing(2)),
-            selector(
-              "& > *",
-              [margin(theme->getSpacingMultipler(`Float(0.5)))],
-            ),
-          ])
-        ),
-      intro: Styles.(make([textAlign(center)])),
-      paper:
-        Styles.(
-          make([
-            backgroundColor(MaterialUi.Colors.Common.white->materialToHex),
-            color(MaterialUi.Colors.Common.black->materialToHex),
-            padding(theme->getSpacing(2)),
-          ])
-        ),
-    }
-  )
-];
+type classes = {
+  section: string,
+  skillContainer: string,
+  intro: string,
+  paper: string,
+};
+let styles =
+  Styles.(
+    WithTheme(
+      theme =>
+        {
+          section: make([marginBottom(px(32))]),
+          skillContainer:
+            make([
+              display(`flex),
+              justifyContent(flexStart),
+              flexWrap(wrap),
+              marginBottom(theme->getSpacing(2)),
+              selector(
+                "& > *",
+                [margin(theme->getSpacingMultipler(`Float(0.5)))],
+              ),
+            ]),
+          intro: make([textAlign(center)]),
+          paper:
+            make([
+              backgroundColor(MaterialUi.Colors.Common.white->materialToHex),
+              color(MaterialUi.Colors.Common.black->materialToHex),
+              padding(theme->getSpacing(2)),
+            ]),
+        },
+    )
+  );
 
 [@react.component]
 let make = () => {
   MaterialUi.(
     <Layout>
-      <HomePage>
+      <Styles.WithStyle styles>
         ...{classes =>
           <>
             <Hero
@@ -143,7 +147,7 @@ let make = () => {
             </Container>
           </>
         }
-      </HomePage>
+      </Styles.WithStyle>
     </Layout>
   );
 };

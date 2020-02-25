@@ -1,28 +1,40 @@
-[%mui.withStyles
-  "Section"(theme => {
-    let darkPrimary =
-      Styles.(getPalette(~mode=`dark, ~color=`primary, ~theme));
-    let darkSecondary =
-      Styles.(getPalette(~mode=`dark, ~color=`secondary, ~theme));
-    let fourUnits = Styles.(theme->getSpacing(4));
-    {
-      root: Styles.(make([marginBottom(fourUnits)])),
-      primaryBackground: Styles.(make([backgroundColor(darkPrimary)])),
-      secondaryBackground: Styles.(make([backgroundColor(darkSecondary)])),
-      expandToFull:
-        Styles.(
-          make([
-            marginLeft(fourUnits),
-            marginRight(fourUnits),
-            padding(fourUnits),
-          ])
-        ),
-      alignLeft: Styles.(make([textAlign(`left)])),
-      alignCenter: Styles.(make([textAlign(`center)])),
-      alignRight: Styles.(make([textAlign(`right)])),
-    };
-  })
-];
+type classes = {
+  root: string,
+  primaryBackground: string,
+  secondaryBackground: string,
+  expandToFull: string,
+  alignLeft: string,
+  alignCenter: string,
+  alignRight: string,
+};
+
+let useStyles =
+  Styles.(
+    createStyles(
+      WithTheme(
+        theme => {
+          let darkPrimary = getPalette(~mode=`dark, ~color=`primary, ~theme);
+          let darkSecondary =
+            getPalette(~mode=`dark, ~color=`secondary, ~theme);
+          let fourUnits = theme->getSpacing(4);
+          {
+            root: make([marginBottom(fourUnits)]),
+            primaryBackground: make([backgroundColor(darkPrimary)]),
+            secondaryBackground: make([backgroundColor(darkSecondary)]),
+            expandToFull:
+              make([
+                marginLeft(fourUnits),
+                marginRight(fourUnits),
+                padding(fourUnits),
+              ]),
+            alignLeft: make([textAlign(`left)]),
+            alignCenter: make([textAlign(`center)]),
+            alignRight: make([textAlign(`right)]),
+          };
+        },
+      ),
+    )
+  );
 
 [@genType "Section"]
 [@react.component]
@@ -37,7 +49,7 @@ let make =
       ~children,
     ) => {
   let (trigger, setRef) = Hooks.useScrollPoint();
-  let classes = Section.useStyles();
+  let classes = useStyles(.);
 
   let computedClassName =
     Cn.make([
