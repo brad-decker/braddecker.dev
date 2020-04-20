@@ -70,14 +70,46 @@ let getTextPalette = (~variation, ~theme) => {
   ->materialToHex;
 };
 
-type styleType('a) =
-  | Static('a)
-  | WithTheme(MaterialUi_Theme.t => 'a);
+[@unboxed]
+type rules =
+  | Rules('a): rules;
 
-let createStyles = (styles: styleType('a)) => {
+type t =
+  | Static(rules): t
+  | WithTheme(MaterialUi_Theme.t => rules): t;
+
+let createStyles = (styles: t) => {
   switch (styles) {
   | Static(rules) => makeStyles(rules)
   | WithTheme(rules) => makeStylesWithTheme(rules)
+  };
+};
+
+type palette = {
+  primaryDark: Types.Color.t,
+  primaryMain: Css.Types.Color.t,
+  primaryLight: Types.Color.t,
+  secondaryDark: Types.Color.t,
+  secondaryMain: Types.Color.t,
+  secondaryLight: Types.Color.t,
+  textPrimary: Types.Color.t,
+  textSecondary: Types.Color.t,
+  textHint: Types.Color.t,
+  textDisabled: Types.Color.t,
+};
+
+let getFullPalette = theme => {
+  {
+    primaryDark: getPalette(~mode=`dark, ~color=`primary, ~theme),
+    primaryMain: getPalette(~mode=?None, ~color=`primary, ~theme),
+    primaryLight: getPalette(~mode=`light, ~color=`primary, ~theme),
+    secondaryDark: getPalette(~mode=`dark, ~color=`secondary, ~theme),
+    secondaryMain: getPalette(~mode=?None, ~color=`secondary, ~theme),
+    secondaryLight: getPalette(~mode=`light, ~color=`secondary, ~theme),
+    textPrimary: getTextPalette(~variation=`primary, ~theme),
+    textSecondary: getTextPalette(~variation=`secondary, ~theme),
+    textDisabled: getTextPalette(~variation=`disabled, ~theme),
+    textHint: getTextPalette(~variation=`hint, ~theme),
   };
 };
 

@@ -13,14 +13,14 @@ let useStyles =
     createStyles(
       WithTheme(
         theme => {
-          let darkPrimary = getPalette(~mode=`dark, ~color=`primary, ~theme);
-          let darkSecondary =
-            getPalette(~mode=`dark, ~color=`secondary, ~theme);
+          let fullPalette = theme->getFullPalette;
           let fourUnits = theme->getSpacing(4);
           {
             root: make([marginBottom(fourUnits)]),
-            primaryBackground: make([backgroundColor(darkPrimary)]),
-            secondaryBackground: make([backgroundColor(darkSecondary)]),
+            primaryBackground:
+              make([backgroundColor(fullPalette.primaryDark)]),
+            secondaryBackground:
+              make([backgroundColor(fullPalette.secondaryDark)]),
             expandToFull:
               make([
                 marginLeft(fourUnits),

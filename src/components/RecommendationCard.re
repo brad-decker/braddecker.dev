@@ -1,8 +1,3 @@
-type classes = {
-  root: string,
-  expand: string,
-};
-
 let useStyles =
   Styles.(
     createStyles(

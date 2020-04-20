@@ -11,15 +11,9 @@ let useStyles =
         theme =>
           {
             header:
-              make([
-                backgroundColor(
-                  getPalette(~mode=`dark, ~color=`primary, ~theme),
-                ),
-              ]),
+              make([backgroundColor(theme->getFullPalette.primaryDark)]),
             avatar:
-              make([
-                backgroundColor(getTextPalette(~variation=`primary, ~theme)),
-              ]),
+              make([backgroundColor(theme->getFullPalette.textPrimary)]),
             grid: make([selector("& > *", [flexGrow(1.)])]),
             card: make([height(`percent(100.))]),
           },
